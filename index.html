@@ -74,7 +74,9 @@ header { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex
 .file-dur { font-family: var(--mono); font-size: 0.68rem; color: var(--gray-500); flex-shrink: 0; }
 
 /* Canvas */
-.canvas-section { position: relative; aspect-ratio: 16/9; overflow: hidden; flex-shrink: 0; background-image: linear-gradient(45deg,#1a1a1a 25%,transparent 25%),linear-gradient(-45deg,#1a1a1a 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#1a1a1a 75%),linear-gradient(-45deg,transparent 75%,#1a1a1a 75%); background-size:16px 16px; background-position:0 0,0 8px,8px -8px,-8px 0; background-color:#111; }
+.canvas-section { position: relative; aspect-ratio: 16/9; overflow: hidden; flex-shrink: 0;
+  background-image: linear-gradient(45deg,#1a1a1a 25%,transparent 25%),linear-gradient(-45deg,#1a1a1a 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#1a1a1a 75%),linear-gradient(-45deg,transparent 75%,#1a1a1a 75%);
+  background-size:16px 16px; background-position:0 0,0 8px,8px -8px,-8px 0; background-color:#111; }
 .canvas-section.has-bg { background: var(--black); }
 #bgCanvas, #waveCanvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 #bgCanvas{z-index:1} #waveCanvas{z-index:2}
@@ -117,7 +119,9 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 12p
 .color-group { flex: 1; }
 .color-group label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-500); display: block; margin-bottom: 7px; }
 input[type="color"] { width: 100%; height: 34px; border: 1px solid var(--border); border-radius: 3px; background: var(--white); cursor: pointer; padding: 2px; }
-select.ctrl-select { width: 100%; height: 34px; background: var(--white); border: 1px solid var(--border); color: var(--black); padding: 0 10px; border-radius: 3px; font-family: var(--mono); font-size: 0.63rem; cursor: pointer; outline: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
+select.ctrl-select { width: 100%; height: 34px; background: var(--white); border: 1px solid var(--border); color: var(--black); padding: 0 10px; border-radius: 3px; font-family: var(--mono); font-size: 0.63rem; cursor: pointer; outline: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 10px center; }
 
 /* Toggle */
 .toggle-item { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-top: 1px solid var(--border); margin-top: 18px; }
@@ -136,13 +140,16 @@ select.ctrl-select { width: 100%; height: 34px; background: var(--white); border
 .info-note.show { display: block; }
 .info-note strong { color: var(--black); }
 
-/* Recording */
-.rec-bar { display: none; align-items: center; gap: 10px; padding: 11px 13px; background: var(--black); border-radius: 3px; }
-.rec-bar.active { display: flex; }
-.rec-dot { width: 7px; height: 7px; border-radius: 50%; background: #fff; animation: recpulse 1s ease-in-out infinite; flex-shrink: 0; }
+/* Status bar — recording + converting share this */
+.status-bar { display: none; flex-direction: column; gap: 6px; padding: 12px 13px; background: var(--black); border-radius: 3px; }
+.status-bar.active { display: flex; }
+.status-row { display: flex; align-items: center; gap: 10px; }
+.status-dot { width: 7px; height: 7px; border-radius: 50%; background: #fff; animation: recpulse 1s ease-in-out infinite; flex-shrink: 0; }
 @keyframes recpulse { 0%,100%{opacity:1}50%{opacity:0.2} }
-.rec-text { font-family: var(--mono); font-size: 0.64rem; color: var(--white); flex: 1; }
-.rec-time { font-family: var(--mono); font-size: 0.64rem; color: rgba(255,255,255,0.45); }
+.status-text { font-family: var(--mono); font-size: 0.64rem; color: var(--white); flex: 1; }
+.status-time { font-family: var(--mono); font-size: 0.64rem; color: rgba(255,255,255,0.45); }
+.status-progress { height: 2px; background: rgba(255,255,255,0.15); border-radius: 1px; overflow: hidden; }
+.status-progress-fill { height: 100%; background: rgba(255,255,255,0.6); border-radius: 1px; width: 0%; transition: width 0.3s ease; }
 
 /* Buttons */
 .btn-group { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
@@ -153,7 +160,8 @@ select.ctrl-select { width: 100%; height: 34px; background: var(--white); border
 .btn-secondary:hover { background: var(--gray-100); }
 .btn-ghost { background: transparent; color: var(--gray-500); border: 1px solid var(--border); }
 .btn-ghost:hover { color: var(--black); }
-.btn-stop { background: var(--black); color: var(--white); }
+.btn-stop { background: var(--gray-700); color: var(--white); }
+.btn-stop:hover { background: var(--black); }
 .btn:disabled { opacity: 0.35; cursor: not-allowed; pointer-events: none; }
 
 /* Toast */
@@ -176,7 +184,7 @@ footer { border-top: 1px solid var(--border); padding: 14px 32px; display: flex;
   </div>
   <div class="header-right">
     <span class="nav-tag">Audio Visualizer</span>
-    <span class="ver-tag" id="verTag">V1.3</span>
+    <span class="ver-tag" id="verTag">V1.4</span>
   </div>
 </header>
 
@@ -185,7 +193,7 @@ footer { border-top: 1px solid var(--border); padding: 14px 32px; display: flex;
   <div id="uploadSection">
     <div class="hero-eyebrow">Audio Tool</div>
     <h1 class="hero-title">Turn sound into<br><em>visual motion</em></h1>
-    <p class="hero-sub">Drop an audio or video file — export a waveform overlay ready for Premiere.</p>
+    <p class="hero-sub">Drop an audio or video file — exports as MP4, ready for Premiere.</p>
     <div class="drop-zone" id="uploadZone">
       <div class="drop-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -276,7 +284,7 @@ footer { border-top: 1px solid var(--border); padding: 14px 32px; display: flex;
         <div class="toggle-item">
           <div>
             <div class="toggle-title">Transparent Background</div>
-            <div class="toggle-sub">Export with alpha for compositing</div>
+            <div class="toggle-sub">Exports WebM with alpha (Premiere / AE)</div>
           </div>
           <label class="switch">
             <input type="checkbox" id="transparentToggle">
@@ -289,24 +297,34 @@ footer { border-top: 1px solid var(--border); padding: 14px 32px; display: flex;
         <div>
           <div class="section-head">Export</div>
           <div class="info-note" id="videoNote">
-            <strong>Video file loaded.</strong><br>Audio extracted — export a transparent WebM to composite over your footage.
+            <strong>Video file loaded.</strong><br>Audio extracted automatically.
           </div>
           <div class="info-note" id="transTip">
-            <strong>Transparent mode on.</strong><br>
+            <strong>Transparent mode.</strong><br>
+            Exports WebM with alpha channel.<br>
             Premiere → blend: Normal<br>
-            After Effects → Interpret Alpha: Straight<br>
-            DaVinci → Composite above clip
+            After Effects → Interpret Alpha: Straight
+          </div>
+          <div class="info-note" id="ffmpegNote" style="display:none;">
+            <strong>First export loads FFmpeg.</strong><br>
+            ~30 MB downloads once, then cached. Subsequent exports are instant.
           </div>
         </div>
 
-        <div class="rec-bar" id="recStatus">
-          <div class="rec-dot"></div>
-          <div class="rec-text" id="recLabel">Rendering…</div>
-          <div class="rec-time" id="recTimer">0:00</div>
+        <!-- Shared status bar for recording + converting -->
+        <div class="status-bar" id="statusBar">
+          <div class="status-row">
+            <div class="status-dot"></div>
+            <div class="status-text" id="statusText">Rendering…</div>
+            <div class="status-time" id="statusTime">0:00</div>
+          </div>
+          <div class="status-progress">
+            <div class="status-progress-fill" id="statusFill"></div>
+          </div>
         </div>
 
         <div class="btn-group">
-          <button class="btn btn-primary" id="exportVideoBtn">Export Video</button>
+          <button class="btn btn-primary" id="exportVideoBtn">Export MP4</button>
           <button class="btn btn-secondary" id="exportPngBtn">Export PNG Frame</button>
           <button class="btn btn-ghost" id="resetBtn">Load New File</button>
         </div>
@@ -315,7 +333,7 @@ footer { border-top: 1px solid var(--border); padding: 14px 32px; display: flex;
   </div>
 
   <footer>
-    <span class="footer-brand">jylabs.io — Waveform <span class="footer-ver" id="footerVer">V1.3</span></span>
+    <span class="footer-brand">jylabs.io — Waveform <span class="footer-ver" id="footerVer">V1.4</span></span>
     <span class="footer-note">Runs locally in your browser. No uploads.</span>
   </footer>
 </div>
@@ -323,24 +341,67 @@ footer { border-top: 1px solid var(--border); padding: 14px 32px; display: flex;
 <script>
 'use strict';
 
-// ─── Version (change only here) ───────────────────────────────────────────────
-const VERSION = 'V1.3';
+// ─── Version ──────────────────────────────────────────────────────────────────
+const VERSION = 'V1.4';
 document.getElementById('verTag').textContent    = VERSION;
 document.getElementById('footerVer').textContent = VERSION;
 
-// ─── State ───────────────────────────────────────────────────────────────────
+// ─── FFmpeg WASM — loaded lazily on first export ──────────────────────────────
+// Uses @ffmpeg/ffmpeg v0.12 ESM build from CDN
+let ffmpegReady = false;
+let ffmpegLoading = false;
+let ffmpegInstance = null;
+
+async function ensureFFmpeg() {
+  if (ffmpegReady) return true;
+  if (ffmpegLoading) {
+    // Wait until it finishes loading
+    while (ffmpegLoading) await new Promise(r => setTimeout(r, 100));
+    return ffmpegReady;
+  }
+  ffmpegLoading = true;
+  setStatus('Loading FFmpeg (~30 MB, one time)…', '', 0);
+
+  try {
+    // Dynamically import FFmpeg ESM from CDN
+    const { FFmpeg } = await import('https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/esm/index.js');
+    const { fetchFile, toBlobURL } = await import('https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.1/dist/esm/index.js');
+
+    // Store fetchFile globally for use in conversion
+    window._ffetchFile = fetchFile;
+
+    const baseURL = 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/esm';
+    ffmpegInstance = new FFmpeg();
+
+    // Log FFmpeg progress
+    ffmpegInstance.on('progress', ({ progress }) => {
+      const pct = Math.round(progress * 100);
+      setStatus('Converting to MP4…', `${pct}%`, progress);
+    });
+
+    await ffmpegInstance.load({
+      coreURL:   await toBlobURL(`${baseURL}/ffmpeg-core.js`,   'text/javascript'),
+      wasmURL:   await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
+    });
+
+    ffmpegReady  = true;
+    ffmpegLoading = false;
+    return true;
+  } catch(e) {
+    ffmpegLoading = false;
+    console.error('FFmpeg load failed:', e);
+    return false;
+  }
+}
+
+// ─── State ────────────────────────────────────────────────────────────────────
 let audioCtx, analyser, source, audioBuffer;
 let isPlaying = false, startTime = 0, pauseOffset = 0, animFrame;
 let waveStyle = 'bars';
-let waveDataFull = null;   // Float32Array, allocated once
-let freqData     = null;   // Uint8Array,   allocated once, filled in-place every frame
-let isTransparent = false, isRecording = false;
-let mediaRecorder = null;
-// ↓ KEY CHANGE: no more recordedChunks array sitting in RAM
-// Instead we stream directly to disk via File System Access API when available,
-// or fall back to a strictly size-limited in-memory approach
-let fileWriter  = null;    // FileSystemWritableFileStream (streaming)
-let fallbackChunks = [];   // used ONLY when File System API unavailable
+let waveDataFull = null;
+let freqData     = null;
+let isTransparent = false, isRecording = false, isConverting = false;
+let mediaRecorder = null, recordedChunks = [];
 let recAF = null, recStartWallTime = 0;
 let recAudioCtx = null, recAnalyser = null, recSource = null, recFreqData = null;
 let exportCanvas = null, exportCtx = null;
@@ -360,78 +421,69 @@ uploadZone.addEventListener('drop', e => {
 fileInput.addEventListener('change', () => { if (fileInput.files[0]) loadFile(fileInput.files[0]); });
 
 async function loadFile(file) {
-  const isVideo = file.type.startsWith("video/") || /\.(mp4|mov|webm|avi|mkv)$/i.test(file.name);
+  const isVideo = file.type.startsWith('video/') || /\.(mp4|mov|webm|avi|mkv)$/i.test(file.name);
   isVideoSource = isVideo;
 
-  // ── Size limit ────────────────────────────────────────────────
-  const MAX_MB = 200;
-  const MAX_B  = MAX_MB * 1024 * 1024;
+  // Size limit
+  const MAX_MB = 200, MAX_B = MAX_MB * 1024 * 1024;
   if (file.size > MAX_B) {
     const fileMB = (file.size / 1024 / 1024).toFixed(0);
     showSizeError(fileMB, MAX_MB, isVideo);
     return;
   }
 
-  $("loadingWrap").classList.add("active");
-  $("loadingTxt").textContent = isVideo ? "Extracting audiou2026" : "Loading audiou2026";
+  $('loadingWrap').classList.add('active');
+  $('loadingTxt').textContent = isVideo ? 'Extracting audio…' : 'Loading audio…';
   hardReset();
 
   try {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    analyser  = audioCtx.createAnalyser();
+    analyser = audioCtx.createAnalyser();
     analyser.fftSize = 512;
     analyser.smoothingTimeConstant = 0.82;
     analyser.connect(audioCtx.destination);
     freqData = new Uint8Array(analyser.frequencyBinCount);
+
     const ab = await file.arrayBuffer();
     audioBuffer = await audioCtx.decodeAudioData(ab);
     waveDataFull = extractWaveform(audioBuffer, 256);
-    $("loadingWrap").classList.remove("active");
+
+    $('loadingWrap').classList.remove('active');
     setupWorkspace(file.name, isVideo);
+
+    // Show FFmpeg note on first visit
+    if (!ffmpegReady) $('ffmpegNote').style.display = 'block';
   } catch(err) {
-    $("loadingWrap").classList.remove("active");
-    toast("Could not load this file.<br>Try MP3, WAV, or MP4 with AAC audio.", 7000);
+    $('loadingWrap').classList.remove('active');
+    toast('Could not load this file.<br>Try MP3, WAV, or MP4 with AAC audio.', 7000);
     console.error(err);
   }
 }
 
-
 function showSizeError(fileMB, maxMB, isVideo) {
   const tip = isVideo
-    ? "Tip: In Premiere export audio only — File u2192 Export u2192 Media u2192 Format: MP3"
-    : "Tip: Compress the file with Audacity or an online converter first.";
-  toast(
-    "<b style=\"color:#fff\">File too large u2014 " + fileMB + " MB</b><br>" +
-    "Maximum allowed size is <b>" + maxMB + " MB</b>.<br><br>" +
-    "<span style=\"color:rgba(255,255,255,0.5);font-size:0.6rem\">" + tip + "</span>",
-    10000
-  );
-  // Also flash the drop zone border red briefly
-  const z = $("uploadZone");
-  z.style.borderColor = "#e53935";
-  z.style.background  = "#fff8f8";
-  setTimeout(() => { z.style.borderColor = ""; z.style.background = ""; }, 2500);
+    ? 'Tip: In Premiere export audio only — File → Export → Media → Format: MP3'
+    : 'Tip: Compress with Audacity or an online converter.';
+  toast(`<b>File too large — ${fileMB} MB</b><br>Max allowed: <b>${maxMB} MB</b><br><br><span style="color:rgba(255,255,255,0.5);font-size:0.6rem">${tip}</span>`, 10000);
+  const z = $('uploadZone');
+  z.style.borderColor = '#e53935'; z.style.background = '#fff8f8';
+  setTimeout(() => { z.style.borderColor = ''; z.style.background = ''; }, 2500);
 }
+
 function hardReset() {
-  // Cancel all animation loops
   if (animFrame) { cancelAnimationFrame(animFrame); animFrame = null; }
   if (recAF)     { cancelAnimationFrame(recAF);     recAF = null; }
-  // Stop audio
-  try { source  && source.stop();    } catch(e){}
+  try { source    && source.stop();    } catch(e){}
   try { recSource && recSource.stop(); } catch(e){}
-  // Close audio contexts — this is the big one for memory
   try { audioCtx    && audioCtx.close();    } catch(e){}
   try { recAudioCtx && recAudioCtx.close(); } catch(e){}
-  // Release canvas memory
   if (exportCanvas) { exportCanvas.width = 0; exportCanvas.height = 0; exportCanvas = null; exportCtx = null; }
-  // Clear all refs
   audioCtx = analyser = source = audioBuffer = null;
   recAudioCtx = recAnalyser = recSource = recFreqData = null;
   waveDataFull = freqData = null;
-  fallbackChunks = [];
-  fileWriter = null;
+  recordedChunks = [];
   mediaRecorder = null;
-  isPlaying = false; isRecording = false;
+  isPlaying = false; isRecording = false; isConverting = false;
   pauseOffset = 0; startTime = 0;
 }
 
@@ -455,25 +507,17 @@ function setupWorkspace(fileName, isVideo) {
   $('fileDuration').textContent = formatTime(audioBuffer.duration);
   $('totalTime').textContent    = formatTime(audioBuffer.duration);
   $('canvasLabel').textContent  = fileName.replace(/\.[^.]+$/, '');
-
   const badge = $('fileTypeBadge');
   badge.textContent = isVideo ? 'VIDEO' : 'AUDIO';
   badge.className   = `file-type-tag ${isVideo ? 'video' : 'audio'}`;
-
   $('videoNote').classList.toggle('show', isVideo);
   if (isVideo && !$('transparentToggle').checked) {
-    $('transparentToggle').checked = true;
-    applyTransparent(true);
+    $('transparentToggle').checked = true; applyTransparent(true);
   }
-
   $('uploadSection').style.display = 'none';
   const ws = $('workspace');
-  ws.style.display = 'flex';
-  ws.classList.add('visible');
-
-  setupCanvas();
-  drawStatic();
-  updatePlayBtn(false);
+  ws.style.display = 'flex'; ws.classList.add('visible');
+  setupCanvas(); drawStatic(); updatePlayBtn(false);
 }
 
 // ─── Canvas ───────────────────────────────────────────────────────────────────
@@ -483,8 +527,7 @@ let bgCtx, wCtx, W, H;
 function setupCanvas() {
   const wrap = $('canvasWrap');
   W = wrap.clientWidth; H = wrap.clientHeight;
-  bgCvs.width = wCvs.width = W;
-  bgCvs.height = wCvs.height = H;
+  bgCvs.width = wCvs.width = W; bgCvs.height = wCvs.height = H;
   bgCtx = bgCvs.getContext('2d');
   wCtx  = wCvs.getContext('2d', { alpha: true });
 }
@@ -498,6 +541,8 @@ function applyTransparent(on) {
   $('bgColorGroup').style.cssText = on ? 'opacity:0.25;pointer-events:none' : '';
   $('bgStyleGroup').style.cssText = on ? 'opacity:0.25;pointer-events:none' : '';
   $('transTip').classList.toggle('show', on);
+  // In transparent mode, export button changes to WebM
+  $('exportVideoBtn').textContent = on ? 'Export WebM (alpha)' : 'Export MP4';
   if (!isPlaying && !isRecording) drawStatic();
 }
 
@@ -519,7 +564,7 @@ function drawBg(ctx, w, h) {
   }
 }
 
-// ─── Waveform draw — zero per-frame allocations ───────────────────────────────
+// ─── Waveform draw ────────────────────────────────────────────────────────────
 function drawWave(ctx, data, len, color, w, h, alpha) {
   const isUint = data instanceof Uint8Array;
   const bw   = parseInt($('barWidth').value);
@@ -534,34 +579,33 @@ function drawWave(ctx, data, len, color, w, h, alpha) {
     const cy = h / 2;
     ctx.fillStyle = color;
     for (let i = 0; i < cols; i++) {
-      const val  = isUint ? (data[i * step] || 0) / 255 : (data[i * step] || 0);
+      const val  = isUint ? (data[i*step]||0)/255 : (data[i*step]||0);
       const barH = val * h * 0.82 * sens;
       const x    = i * (bw + gap);
-      if (mirror) { ctx.fillRect(x, cy - barH/2, bw, barH/2); ctx.fillRect(x, cy, bw, barH/2); }
-      else        { ctx.fillRect(x, h - barH, bw, barH); }
+      if (mirror) { ctx.fillRect(x, cy-barH/2, bw, barH/2); ctx.fillRect(x, cy, bw, barH/2); }
+      else        { ctx.fillRect(x, h-barH, bw, barH); }
     }
   } else if (waveStyle === 'line') {
     ctx.strokeStyle = color; ctx.lineWidth = 1.5;
     for (let dir = -1; dir <= 1; dir += 2) {
       ctx.beginPath();
       for (let i = 0; i < len; i++) {
-        const val = isUint ? (data[i] || 0) / 255 : (data[i] || 0);
-        const x = (i / len) * w;
-        const y = h/2 + dir * val * h * 0.44 * sens;
-        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        const val = isUint ? (data[i]||0)/255 : (data[i]||0);
+        const x = (i/len)*w, y = h/2 + dir*val*h*0.44*sens;
+        i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
       }
       ctx.stroke();
     }
-  } else { // circle
-    const cx = w/2, cy = h/2, r = Math.min(w, h) * 0.26;
-    ctx.strokeStyle = color; ctx.lineWidth = 1.5;
+  } else {
+    const cx=w/2, cy=h/2, r=Math.min(w,h)*0.26;
+    ctx.strokeStyle=color; ctx.lineWidth=1.5;
     ctx.beginPath();
-    for (let i = 0; i <= len; i++) {
-      const val   = isUint ? (data[i % len] || 0) / 255 : (data[i % len] || 0);
-      const angle = (i / len) * Math.PI * 2 - Math.PI / 2;
-      const rr    = r + val * r * 0.82 * sens;
-      const x = cx + Math.cos(angle) * rr, y = cy + Math.sin(angle) * rr;
-      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    for (let i=0; i<=len; i++) {
+      const val=(isUint?(data[i%len]||0)/255:(data[i%len]||0));
+      const angle=(i/len)*Math.PI*2-Math.PI/2;
+      const rr=r+val*r*0.82*sens;
+      const x=cx+Math.cos(angle)*rr, y=cy+Math.sin(angle)*rr;
+      i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
     }
     ctx.closePath(); ctx.stroke();
   }
@@ -576,7 +620,7 @@ function drawStatic() {
 }
 
 function drawLive() {
-  analyser.getByteFrequencyData(freqData); // in-place
+  analyser.getByteFrequencyData(freqData);
   const color = $('waveColor').value;
   drawBg(bgCtx, W, H);
   wCtx.clearRect(0, 0, W, H);
@@ -584,19 +628,17 @@ function drawLive() {
   drawWave(wCtx, freqData, freqData.length, color, W, H, 1);
 
   const elapsed = audioCtx.currentTime - startTime + pauseOffset;
-  $('progressBar').style.width = (Math.min(elapsed / audioBuffer.duration, 1) * 100) + '%';
+  $('progressBar').style.width = (Math.min(elapsed/audioBuffer.duration,1)*100)+'%';
   $('currentTime').textContent = formatTime(Math.min(elapsed, audioBuffer.duration));
 
   if (isPlaying && elapsed < audioBuffer.duration) {
     animFrame = requestAnimationFrame(drawLive);
-  } else if (isPlaying) {
-    stopAudio();
-  }
+  } else if (isPlaying) { stopAudio(); }
 }
 
 // ─── Playback ─────────────────────────────────────────────────────────────────
 function playAudio() {
-  if (!audioBuffer || isRecording) return;
+  if (!audioBuffer || isRecording || isConverting) return;
   if (audioCtx.state === 'suspended') audioCtx.resume();
   source = audioCtx.createBufferSource();
   source.buffer = audioBuffer; source.connect(analyser);
@@ -607,20 +649,20 @@ function playAudio() {
 function pauseAudio() {
   if (!isPlaying) return;
   pauseOffset += audioCtx.currentTime - startTime;
-  try { source.stop(); } catch(e){}
-  isPlaying = false; cancelAnimationFrame(animFrame); animFrame = null; updatePlayBtn(false);
+  try{source.stop();}catch(e){}
+  isPlaying=false; cancelAnimationFrame(animFrame); animFrame=null; updatePlayBtn(false);
 }
 function stopAudio() {
-  try { source && source.stop(); } catch(e){}
-  isPlaying = false; pauseOffset = 0;
-  cancelAnimationFrame(animFrame); animFrame = null;
+  try{source&&source.stop();}catch(e){}
+  isPlaying=false; pauseOffset=0;
+  cancelAnimationFrame(animFrame); animFrame=null;
   updatePlayBtn(false);
-  $('progressBar').style.width = '0%'; $('currentTime').textContent = '0:00';
+  $('progressBar').style.width='0%'; $('currentTime').textContent='0:00';
   drawStatic();
 }
 
 $('playBtn').addEventListener('click', () => {
-  if (isRecording) return;
+  if (isRecording||isConverting) return;
   if (isPlaying) pauseAudio(); else playAudio();
 });
 function updatePlayBtn(p) {
@@ -629,184 +671,236 @@ function updatePlayBtn(p) {
     : '<path d="M8 5v14l11-7z"/>';
 }
 $('progressWrap').addEventListener('click', e => {
-  if (isRecording || !audioBuffer) return;
-  const pct = (e.clientX - e.currentTarget.getBoundingClientRect().left) / e.currentTarget.offsetWidth;
-  pauseOffset = pct * audioBuffer.duration;
-  if (isPlaying) { try{source.stop();}catch(e){} cancelAnimationFrame(animFrame); isPlaying=false; playAudio(); }
-  $('progressBar').style.width = (pct*100)+'%'; $('currentTime').textContent = formatTime(pauseOffset);
+  if (isRecording||isConverting||!audioBuffer) return;
+  const pct=(e.clientX-e.currentTarget.getBoundingClientRect().left)/e.currentTarget.offsetWidth;
+  pauseOffset=pct*audioBuffer.duration;
+  if(isPlaying){try{source.stop();}catch(e){}cancelAnimationFrame(animFrame);isPlaying=false;playAudio();}
+  $('progressBar').style.width=(pct*100)+'%'; $('currentTime').textContent=formatTime(pauseOffset);
 });
 
 // ─── Controls ─────────────────────────────────────────────────────────────────
 document.querySelectorAll('.style-tab').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.style-tab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active'); waveStyle = btn.dataset.style;
-    if (!isPlaying && !isRecording) drawStatic();
+    document.querySelectorAll('.style-tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active'); waveStyle=btn.dataset.style;
+    if(!isPlaying&&!isRecording) drawStatic();
   });
 });
-$('barWidth').addEventListener('input', function(){ $('barWidthVal').textContent=this.value; if(!isPlaying&&!isRecording)drawStatic(); });
-$('sensitivity').addEventListener('input', function(){ $('sensitivityVal').textContent=parseFloat(this.value).toFixed(1); if(!isPlaying&&!isRecording)drawStatic(); });
-['waveColor','bgColor','bgStyle'].forEach(id => { $(id).addEventListener('input',()=>{ if(!isPlaying&&!isRecording)drawStatic(); }); });
+$('barWidth').addEventListener('input',function(){$('barWidthVal').textContent=this.value;if(!isPlaying&&!isRecording)drawStatic();});
+$('sensitivity').addEventListener('input',function(){$('sensitivityVal').textContent=parseFloat(this.value).toFixed(1);if(!isPlaying&&!isRecording)drawStatic();});
+['waveColor','bgColor','bgStyle'].forEach(id=>{$(id).addEventListener('input',()=>{if(!isPlaying&&!isRecording)drawStatic();});});
 
 // ─── PNG export ───────────────────────────────────────────────────────────────
 $('exportPngBtn').addEventListener('click', () => {
-  const out = document.createElement('canvas');
-  out.width = W; out.height = H;
-  const ctx = out.getContext('2d');
-  if (!isTransparent) ctx.drawImage(bgCvs, 0, 0);
-  ctx.drawImage(wCvs, 0, 0);
-  const a = document.createElement('a');
-  a.download = isTransparent ? 'jylabs-waveform-transparent.png' : 'jylabs-waveform.png';
-  a.href = out.toDataURL('image/png'); a.click();
-  out.width = 0; out.height = 0; // free GPU memory immediately
+  const out=document.createElement('canvas');
+  out.width=W; out.height=H;
+  const ctx=out.getContext('2d');
+  if(!isTransparent) ctx.drawImage(bgCvs,0,0);
+  ctx.drawImage(wCvs,0,0);
+  const a=document.createElement('a');
+  a.download=isTransparent?'jylabs-waveform-transparent.png':'jylabs-waveform.png';
+  a.href=out.toDataURL('image/png'); a.click();
+  out.width=0; out.height=0;
 });
 
-// ─── Video export — streaming to disk, no RAM accumulation ───────────────────
+// ─── Status bar helpers ───────────────────────────────────────────────────────
+function setStatus(text, time, fillPct) {
+  $('statusBar').classList.add('active');
+  $('statusText').textContent = text;
+  $('statusTime').textContent = time;
+  $('statusFill').style.width = (fillPct * 100) + '%';
+}
+function clearStatus() {
+  $('statusBar').classList.remove('active');
+  $('statusFill').style.width = '0%';
+}
+
+function setBusy(busy) {
+  $('playBtn').disabled      = busy;
+  $('exportPngBtn').disabled = busy;
+  $('resetBtn').disabled     = busy;
+  $('exportVideoBtn').textContent = busy ? 'Stop & Save' : (isTransparent ? 'Export WebM (alpha)' : 'Export MP4');
+  $('exportVideoBtn').className   = busy ? 'btn btn-stop' : 'btn btn-primary';
+}
+
+// ─── Video export ─────────────────────────────────────────────────────────────
 $('exportVideoBtn').addEventListener('click', () => {
-  if (isRecording) { stopRecording(); return; }
+  if (isRecording) { stopRecording(true); return; } // user manually stopped
+  if (isConverting) return;
   startRecording();
 });
 
-async function startRecording() {
+function startRecording() {
   if (isPlaying) pauseAudio();
 
-  // Export canvas: cap at 854×480 (480p) — drastically reduces memory vs 720p/1080p
-  // For a waveform overlay this is more than enough quality
-  const EW = 854, EH = 480;
-  exportCanvas = document.createElement('canvas');
-  exportCanvas.width = EW; exportCanvas.height = EH;
-  exportCtx = exportCanvas.getContext('2d', { alpha: true });
+  // Export canvas: 854×480 — good quality for a waveform, low memory
+  const EW=854, EH=480;
+  exportCanvas=document.createElement('canvas');
+  exportCanvas.width=EW; exportCanvas.height=EH;
+  exportCtx=exportCanvas.getContext('2d',{alpha:true});
 
-  const codecs   = ['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'];
-  const mimeType = codecs.find(c => MediaRecorder.isTypeSupported(c)) || 'video/webm';
-  const isVP9    = mimeType.includes('vp9');
-  const stream   = exportCanvas.captureStream(24); // 24fps — lower than 30, less encode work
-
-  // Try File System Access API first — streams directly to disk, zero RAM accumulation
-  const canStream = typeof window.showSaveFilePicker === 'function';
-  let fname = isTransparent ? 'jylabs-waveform-transparent.webm' : 'jylabs-waveform.webm';
-
-  if (canStream) {
-    try {
-      const handle = await window.showSaveFilePicker({
-        suggestedName: fname,
-        types: [{ description: 'WebM Video', accept: { 'video/webm': ['.webm'] } }]
-      });
-      fileWriter = await handle.createWritable();
-    } catch(e) {
-      // User cancelled picker — abort
-      exportCanvas.width = 0; exportCanvas.height = 0; exportCanvas = null; exportCtx = null;
-      return;
-    }
-  } else {
-    fallbackChunks = []; // in-memory fallback
-  }
+  // Always record WebM first; if not transparent, convert to MP4 via FFmpeg after
+  const codecs=['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'];
+  const mimeType=codecs.find(c=>MediaRecorder.isTypeSupported(c))||'video/webm';
+  const stream=exportCanvas.captureStream(24);
+  recordedChunks=[];
 
   try {
-    mediaRecorder = new MediaRecorder(stream, {
-      mimeType,
-      videoBitsPerSecond: 1_500_000  // 1.5Mbps — sufficient for a waveform graphic
-    });
+    mediaRecorder=new MediaRecorder(stream,{mimeType,videoBitsPerSecond:1_500_000});
   } catch(e) {
-    mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder=new MediaRecorder(stream,{videoBitsPerSecond:1_000_000});
   }
 
-  mediaRecorder.ondataavailable = async e => {
-    if (!e.data || e.data.size === 0) return;
-    if (fileWriter) {
-      // Streaming path: write chunk directly to disk file — no RAM held
-      await fileWriter.write(e.data);
-    } else {
-      // Fallback: accumulate in memory (try to keep short clips only)
-      fallbackChunks.push(e.data);
-    }
-  };
-  mediaRecorder.onstop = () => finaliseVideo(mimeType, fname);
-  mediaRecorder.start(1000); // 1 second chunks — less encode overhead
+  mediaRecorder.ondataavailable=e=>{if(e.data&&e.data.size>0)recordedChunks.push(e.data);};
+  mediaRecorder.onstop=()=>onRecordingDone(mimeType);
+  mediaRecorder.start(1000);
 
-  // Silent audio context for analyser data
-  recAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  recAnalyser = recAudioCtx.createAnalyser();
-  recAnalyser.fftSize = 512;
-  recAnalyser.smoothingTimeConstant = 0.82;
-  const sg = recAudioCtx.createGain(); sg.gain.value = 0;
+  // Silent audio context for frequency analysis
+  recAudioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  recAnalyser=recAudioCtx.createAnalyser();
+  recAnalyser.fftSize=512; recAnalyser.smoothingTimeConstant=0.82;
+  const sg=recAudioCtx.createGain(); sg.gain.value=0;
   recAnalyser.connect(sg); sg.connect(recAudioCtx.destination);
-  recFreqData = new Uint8Array(recAnalyser.frequencyBinCount); // allocated once
+  recFreqData=new Uint8Array(recAnalyser.frequencyBinCount);
+  recSource=recAudioCtx.createBufferSource();
+  recSource.buffer=audioBuffer; recSource.connect(recAnalyser); recSource.start(0);
+  recStartWallTime=recAudioCtx.currentTime;
 
-  recSource = recAudioCtx.createBufferSource();
-  recSource.buffer = audioBuffer; recSource.connect(recAnalyser); recSource.start(0);
-  recStartWallTime = recAudioCtx.currentTime;
-
-  isRecording = true;
-  updateRecUI(true);
+  isRecording=true;
+  setBusy(true);
+  setStatus('Recording waveform…', '0:00', 0);
   renderExportFrame();
 }
 
 function renderExportFrame() {
   if (!isRecording) return;
+  const elapsed=recAudioCtx.currentTime-recStartWallTime;
+  recAnalyser.getByteFrequencyData(recFreqData);
 
-  const elapsed = recAudioCtx.currentTime - recStartWallTime;
-  recAnalyser.getByteFrequencyData(recFreqData); // in-place
+  const color=$('waveColor').value;
+  const EW=exportCanvas.width, EH=exportCanvas.height;
+  exportCtx.clearRect(0,0,EW,EH);
+  drawBg(exportCtx,EW,EH);
+  drawWave(exportCtx,waveDataFull,waveDataFull.length,color,EW,EH,0.1);
+  drawWave(exportCtx,recFreqData,recFreqData.length,color,EW,EH,1);
 
-  const color = $('waveColor').value;
-  const EW = exportCanvas.width, EH = exportCanvas.height;
-  exportCtx.clearRect(0, 0, EW, EH);
-  drawBg(exportCtx, EW, EH);
-  drawWave(exportCtx, waveDataFull, waveDataFull.length, color, EW, EH, 0.1);
-  drawWave(exportCtx, recFreqData, recFreqData.length, color, EW, EH, 1);
+  const progress=Math.min(elapsed/audioBuffer.duration,1);
+  $('progressBar').style.width=(progress*100)+'%';
+  $('currentTime').textContent=formatTime(Math.min(elapsed,audioBuffer.duration));
+  setStatus('Recording waveform…', formatTime(elapsed)+' / '+formatTime(audioBuffer.duration), progress);
 
-  $('progressBar').style.width = (Math.min(elapsed/audioBuffer.duration,1)*100)+'%';
-  $('currentTime').textContent = formatTime(Math.min(elapsed, audioBuffer.duration));
-  $('recTimer').textContent    = formatTime(elapsed)+' / '+formatTime(audioBuffer.duration);
-
-  if (elapsed >= audioBuffer.duration) { stopRecording(); return; }
-  recAF = requestAnimationFrame(renderExportFrame);
+  if (elapsed>=audioBuffer.duration) { stopRecording(false); return; }
+  recAF=requestAnimationFrame(renderExportFrame);
 }
 
-function stopRecording() {
-  isRecording = false;
-  cancelAnimationFrame(recAF); recAF = null;
-  try { recSource && recSource.stop(); }    catch(e){}
-  try { recAudioCtx && recAudioCtx.close(); } catch(e){}
-  recAudioCtx = recAnalyser = recSource = recFreqData = null;
-  try { if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop(); } catch(e){}
-  updateRecUI(false);
-  drawStatic();
-  $('progressBar').style.width = '0%'; $('currentTime').textContent = '0:00';
-}
-
-async function finaliseVideo(mimeType, fname) {
-  // Free export canvas GPU memory immediately
-  if (exportCanvas) { exportCanvas.width = 0; exportCanvas.height = 0; exportCanvas = null; exportCtx = null; }
-
-  if (fileWriter) {
-    // Streaming path — just close the file, it's already written to disk
-    try { await fileWriter.close(); } catch(e){}
-    fileWriter = null;
-    toast('<b>Saved!</b><br>'+fname+'<br>Premiere → drag above footage → blend: Normal', 7000);
-  } else {
-    // Fallback: blob from accumulated chunks
-    const blob = new Blob(fallbackChunks, { type: mimeType });
-    fallbackChunks = []; // free immediately after blob creation
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a'); a.href = url; a.download = fname; a.click();
-    setTimeout(() => URL.revokeObjectURL(url), 8000);
-    toast('<b>Saved: '+fname+'</b><br>'+(isTransparent?'Premiere → blend: Normal':'Import into your NLE'), 6000);
+function stopRecording(userCancelled) {
+  isRecording=false;
+  cancelAnimationFrame(recAF); recAF=null;
+  try{recSource&&recSource.stop();}catch(e){}
+  try{recAudioCtx&&recAudioCtx.close();}catch(e){}
+  recAudioCtx=recAnalyser=recSource=recFreqData=null;
+  try{if(mediaRecorder&&mediaRecorder.state!=='inactive')mediaRecorder.stop();}catch(e){}
+  // mediaRecorder.onstop → onRecordingDone fires after this
+  if (userCancelled) {
+    // Clean up without converting
+    recordedChunks=[];
+    if(exportCanvas){exportCanvas.width=0;exportCanvas.height=0;exportCanvas=null;exportCtx=null;}
+    setBusy(false); clearStatus(); drawStatic();
+    $('progressBar').style.width='0%'; $('currentTime').textContent='0:00';
   }
+}
+
+async function onRecordingDone(mimeType) {
+  // Free export canvas GPU memory
+  if(exportCanvas){exportCanvas.width=0;exportCanvas.height=0;exportCanvas=null;exportCtx=null;}
+
+  $('progressBar').style.width='0%'; $('currentTime').textContent='0:00';
+  drawStatic();
+
+  const webmBlob=new Blob(recordedChunks,{type:mimeType||'video/webm'});
+  recordedChunks=[]; // free immediately
+
+  // If transparent mode — just download the WebM (alpha)
+  if (isTransparent) {
+    downloadBlob(webmBlob,'jylabs-waveform-transparent.webm');
+    setBusy(false); clearStatus();
+    toast('<b>Saved: jylabs-waveform-transparent.webm</b><br>Premiere → drag above footage → blend: Normal<br>After Effects → Interpret Alpha: Straight', 8000);
+    return;
+  }
+
+  // ── Convert WebM → MP4 via FFmpeg WASM ────────────────────────
+  isConverting=true;
+  setStatus('Loading FFmpeg…', '', 0);
+
+  const ok=await ensureFFmpeg();
+  if (!ok) {
+    // FFmpeg failed to load — fall back to WebM download
+    downloadBlob(webmBlob,'jylabs-waveform.webm');
+    setBusy(false); clearStatus(); isConverting=false;
+    toast('<b>FFmpeg unavailable — saved as WebM instead.</b><br>Try Chrome or Edge for MP4 export.', 8000);
+    return;
+  }
+
+  try {
+    setStatus('Converting to MP4…', '0%', 0);
+    const ff=ffmpegInstance;
+
+    // Write WebM into FFmpeg virtual filesystem
+    const webmData=new Uint8Array(await webmBlob.arrayBuffer());
+    await ff.writeFile('input.webm', webmData);
+
+    // Convert: WebM → MP4 (H.264, fast preset, web-compatible)
+    await ff.exec([
+      '-i',        'input.webm',
+      '-c:v',      'libx264',
+      '-preset',   'ultrafast',  // fastest encode, reasonable quality
+      '-crf',      '23',          // quality: 18=high, 28=low, 23=default
+      '-movflags', '+faststart',  // optimise for web streaming
+      '-pix_fmt',  'yuv420p',    // Premiere / broad compatibility
+      '-an',                      // no audio track (waveform only)
+      'output.mp4'
+    ]);
+
+    const mp4Data=await ff.readFile('output.mp4');
+    const mp4Blob=new Blob([mp4Data.buffer],{type:'video/mp4'});
+
+    // Clean up FFmpeg virtual FS
+    try{await ff.deleteFile('input.webm');}catch(e){}
+    try{await ff.deleteFile('output.mp4');}catch(e){}
+
+    downloadBlob(mp4Blob,'jylabs-waveform.mp4');
+    setBusy(false); clearStatus(); isConverting=false;
+    $('ffmpegNote').style.display='none'; // hide first-time note
+    toast('<b>Saved: jylabs-waveform.mp4</b><br>Import directly into Premiere Pro.', 5000);
+
+  } catch(err) {
+    console.error('FFmpeg conversion error:', err);
+    // Fall back to WebM
+    downloadBlob(webmBlob,'jylabs-waveform.webm');
+    setBusy(false); clearStatus(); isConverting=false;
+    toast('<b>MP4 conversion failed — saved as WebM.</b>', 6000);
+  }
+}
+
+function downloadBlob(blob, filename) {
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download=filename; a.click();
+  setTimeout(()=>URL.revokeObjectURL(url), 10000);
 }
 
 // ─── Reset ────────────────────────────────────────────────────────────────────
 $('resetBtn').addEventListener('click', () => {
-  if (isRecording) stopRecording();
-  hardReset();
-  isVideoSource = false;
-  $('workspace').style.display = 'none'; $('workspace').classList.remove('visible');
-  $('uploadSection').style.display = 'flex';
-  fileInput.value = '';
-  $('transparentToggle').checked = false; applyTransparent(false);
+  if(isRecording) stopRecording(true);
+  hardReset(); isVideoSource=false;
+  $('workspace').style.display='none'; $('workspace').classList.remove('visible');
+  $('uploadSection').style.display='flex';
+  fileInput.value='';
+  $('transparentToggle').checked=false; applyTransparent(false);
   $('videoNote').classList.remove('show');
   $('canvasWrap').classList.add('has-bg');
-  $('progressBar').style.width = '0%'; $('currentTime').textContent = '0:00';
+  $('progressBar').style.width='0%'; $('currentTime').textContent='0:00';
+  clearStatus(); setBusy(false);
+  $('ffmpegNote').style.display='none';
 });
 
 // ─── Colour helpers ───────────────────────────────────────────────────────────
